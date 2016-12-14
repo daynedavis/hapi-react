@@ -5,15 +5,13 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  devtool: 'eval-source-map',
   entry: [
-    'react-hot-loader/patch',
     path.join(__dirname, 'src/client/main.jsx')
   ],
   output: {
     path: path.join(__dirname, '/dist/'),
     filename: '[name].js',
-    publicPath: '/assets/'
+    publicPath: 'http://localhost:8080/assets/'
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -22,27 +20,16 @@ module.exports = {
       filename: 'index.html'
     }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development')
+      'process.env.NODE_ENV': JSON.stringify('production')
     })
   ],
-  devServer: {
-    historyApiFallback: {
-      index: 'http://localhost:3000/assets/'
-    },
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3000',
-        secure: false
-      }
-    }
-  },
   module: {
     loaders: [{
       test: /\.jsx?$/,
       exclude: /node_modules/,
       loader: 'babel',
       query: {
-        "presets": ["react", "es2015", "stage-2", "react-hmre"]
+        "presets": ["react", "es2015", "stage-2"]
       }
     }, {
       test: /\.json?$/,
@@ -52,7 +39,7 @@ module.exports = {
       loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]'
     }, {
       test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      loader:"url?limit=10000&mimetype=application/font-woff"
+      loader:"url?limit=10000&minetype=application/font-woff"
     }, {
       test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
       loader: "file"

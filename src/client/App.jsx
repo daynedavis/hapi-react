@@ -1,26 +1,18 @@
 import React from 'react';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import Home from './components/Home';
 import Title from './components/Title';
+import 'materialize-loader';
 
 export default class App extends React.Component {
-  constructor (props) {
-    super(props);
-    const request = new Request('/api/hello', {
-      headers: new Headers({
-        'Content-Type': 'text/plain'
-      })
-    });
-    const text = fetch(request).then((res) => {
-      return res.text();
-    });
-
-    text.then((res) => console.log(res));
-  }
   render () {
     return (
-      <div>
-        Hello World
-        <Title title="Hello Title" />
-      </div>
+    <Router history={browserHistory}>
+      <Route path="/">
+        <IndexRoute component={Home}/>
+        <Route path="title" component={Title}/>
+      </Route>
+    </Router>
     );
   }
 }

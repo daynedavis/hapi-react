@@ -1,27 +1,31 @@
+'use strict';
+
 const Hapi = require('hapi');
 const Inert = require('inert');
+const Path = require('path');
 
-const server = new Hapi.Server();
-server.connection({ port: 3000 });
+const routes = require('./routes');
+const api = require('./api');
+
+const server = new Hapi.Server({
+  connections: {
+    routes: {
+      files: {
+        relativeTo: Path.join(__dirname, '../../dist')
+      }
+    }
+  }
+});
 server.register(Inert, () => {});
 
 if (process.env.NODE_ENV === 'production') {
-  server.route({
-    method: 'GET',
-    path: '/{path*}',
-    handler: function (request, reply) {
-      reply.file('./dist/index.html');
-    }
-  });
+  server.connection({ port: 8080 });
+  server.route(routes);
+} else {
+  server.connection({ port: 3000 });
 }
 
-server.route({
-  method: 'GET',
-  path: '/api/hello',
-  handler: function (request, reply) {
-    reply('Hello, world!');
-  }
-});
+server.route(api);
 
 server.start((err) => {
 
