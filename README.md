@@ -1,2 +1,2 @@
 # hapiReact
-React and Hapijs starter kit
+React and Hapijs starter kit.
