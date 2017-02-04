@@ -17,6 +17,7 @@ const server = new Hapi.Server({
   }
 });
 server.register(Inert, () => {});
+process.title = 'app';
 
 if (process.env.NODE_ENV === 'production') {
   server.connection({ port: 8080 });
