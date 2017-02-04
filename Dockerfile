@@ -10,8 +10,9 @@ RUN npm install
 COPY . /usr/src/app
 
 ENV NODE_ENV=production
-
-EXPOSE 8080
+ENV PORT=8080
 
 CMD [ "npm", "run", "build" ]
 CMD [ "npm", "run", "prod" ]
+
+EXPOSE 8080
