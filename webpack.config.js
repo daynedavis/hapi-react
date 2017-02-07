@@ -27,11 +27,13 @@ module.exports = {
   ],
   devServer: {
     historyApiFallback: {
-      index: 'http://localhost:3000/assets/'
+      index: 'http://0.0.0.0:3000/assets/'
     },
     proxy: {
       '/api': {
-        target: 'http://localhost:3000',
+        target: 'http://0.0.0.0:3000',
+        ignorePath: true,
+        changeOrigin: true,
         secure: false
       }
     }

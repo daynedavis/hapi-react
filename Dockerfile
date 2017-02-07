@@ -6,13 +6,12 @@ WORKDIR /usr/src/app
 
 COPY package.json /usr/src/app
 RUN npm install
+RUN npm install -g forever
 
 COPY . /usr/src/app
 
-ENV NODE_ENV=production
-ENV PORT=8080
+ENV NODE_ENV=dev
+EXPOSE 8080 3000
 
-CMD [ "npm", "run", "build" ]
-CMD [ "npm", "run", "prod" ]
-
-EXPOSE 8080
+RUN forever start './src/server/server.js'
+CMD [ "npm", "start" ]
