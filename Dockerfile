@@ -1,17 +1,14 @@
 From node:boron
 
-#Create app directory
-RUN mkdir -p /usr/src/app
+WORKDIR /tmp
+COPY package.json /tmp/
+RUN npm config set registry http://registry.npmjs.org/ && npm install
 WORKDIR /usr/src/app
-
-COPY package.json /usr/src/app
-RUN npm install
-RUN npm install -g forever
-
-COPY . /usr/src/app
+COPY . /usr/src/app/
+RUN cp -a /tmp/node_modules /usr/src/app/
 
 ENV NODE_ENV=dev
 EXPOSE 8080 3000
 
-RUN forever start './src/server/server.js'
+RUN npm run dev
 CMD [ "npm", "start" ]

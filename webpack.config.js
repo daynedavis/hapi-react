@@ -8,6 +8,7 @@ module.exports = {
   devtool: 'eval-source-map',
   entry: [
     'react-hot-loader/patch',
+    'webpack-dev-server/client?http://0.0.0.0:80',
     path.join(__dirname, 'src/client/main.jsx')
   ],
   output: {
