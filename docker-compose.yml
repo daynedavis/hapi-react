@@ -1,7 +1,7 @@
 web:
   build: .
   ports:
-  - "80:8080"
+  - "8080:8080"
   volumes:
   - "./:/usr/src/app:rw"
   environment:
@@ -15,4 +15,23 @@ web:
       cp -a /tmp/node_modules /usr/src/app/website;
     fi &&
     npm install && npm start
+    '
+api:
+  build: .
+  dockerfile: DockerfileApi
+  ports:
+  - "3000:3000"
+  volumes:
+  - "./:/usr/src/app:rw"
+  environment:
+  - NODE_ENV=dev
+  command: >
+    sh -c '
+    if test -d node_modules;
+    then
+      echo node_modules_exists ;
+    else
+      cp -a /tmp/node_modules /usr/src/app/website;
+    fi &&
+    npm install && npm run dev
     '

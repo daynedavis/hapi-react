@@ -8,7 +8,7 @@ module.exports = {
   devtool: 'eval-source-map',
   entry: [
     'react-hot-loader/patch',
-    'webpack-dev-server/client?http://0.0.0.0:80',
+    'webpack-dev-server/client?http://0.0.0.0:8080',
     path.join(__dirname, 'src/client/main.jsx')
   ],
   output: {
@@ -31,12 +31,10 @@ module.exports = {
       index: 'http://0.0.0.0:3000/assets/'
     },
     proxy: {
-      '/api': {
-        target: 'http://0.0.0.0:3000',
-        ignorePath: true,
-        changeOrigin: true,
-        secure: false
-      }
+        '/api': {
+            target: 'http://0.0.0.0:3000',
+            secure: false
+        }
     }
   },
   module: {
