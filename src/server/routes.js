@@ -17,4 +17,4 @@ module.exports = [
       reply.file('index.html');
     }
   }
-]
+];

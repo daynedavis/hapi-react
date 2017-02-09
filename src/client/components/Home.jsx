@@ -19,7 +19,6 @@ export default class Home extends React.Component {
     return (
       <div className="container">
         <div className="card">
-          Hello World
           <Title title="Hello Title" />
         </div>
       </div>
