@@ -28,11 +28,11 @@ module.exports = {
   ],
   devServer: {
     historyApiFallback: {
-      index: 'http://0.0.0.0:3000/assets/'
+      index: '/assets/'
     },
     proxy: {
         '/api': {
-            target: 'http://0.0.0.0:3000',
+            target: 'http://api:3000',
             secure: false
         }
     }
