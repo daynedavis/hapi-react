@@ -7,7 +7,8 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app/
 RUN cp -a /tmp/node_modules /usr/src/app/
 
-ENV NODE_ENV=dev
-EXPOSE 3000
+ENV NODE_ENV=production
+EXPOSE 80
 
+RUN npm run build
 CMD [ "npm", "run", "server" ]

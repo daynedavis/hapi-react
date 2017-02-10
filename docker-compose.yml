@@ -5,11 +5,11 @@ services:
       context: .
       dockerfile: ./src/client/Dockerfile
     ports:
-    - "8080:8080"
+      - "8080:8080"
     volumes:
-    - "./:/usr/src/app:rw"
+      - "./:/usr/src/app:rw"
     environment:
-    - NODE_ENV=dev
+      - NODE_ENV=dev
     command: >
       sh -c '
       if test -d node_modules;
@@ -24,12 +24,14 @@ services:
     build:
       context: .
       dockerfile: ./src/server/Dockerfile
+    depends_on:
+      - web
     ports:
-    - "3000:3000"
+      - "3000:3000"
     volumes:
-    - "./:/usr/src/app:rw"
+      - "./:/usr/src/app:rw"
     environment:
-    - NODE_ENV=dev
+      - NODE_ENV=dev
     command: >
       sh -c '
       if test -d node_modules;
@@ -38,5 +40,5 @@ services:
       else
         cp -a /tmp/node_modules /usr/src/app/node_modules;
       fi &&
-      npm install && npm run dev
+      npm install && npm run server
       '

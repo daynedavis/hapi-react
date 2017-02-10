@@ -19,7 +19,7 @@ const server = new Hapi.Server({
 server.register(Inert, () => {});
 
 if (process.env.NODE_ENV === 'production') {
-  server.connection({ port: 8080 });
+  server.connection({ port: 80 });
   server.route(routes);
 } else {
   server.connection({ port: 3000 });
