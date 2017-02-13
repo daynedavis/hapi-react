@@ -32,7 +32,7 @@ module.exports = {
     },
     proxy: {
         '/api': {
-            target: 'http://api:3000',
+            target: 'http://web:3000',
             secure: false
         }
     }

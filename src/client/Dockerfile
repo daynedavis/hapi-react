@@ -10,4 +10,4 @@ RUN cp -a /tmp/node_modules /usr/src/app/
 ENV NODE_ENV=dev
 EXPOSE 8080
 
-CMD [ "npm", "start" ]
+CMD [ "npm", "run", "server", "&&", "npm", "start" ]
