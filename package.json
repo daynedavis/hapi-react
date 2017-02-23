@@ -1,12 +1,15 @@
 {
   "name": "hapi-react",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "React application with hapi server",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "rimraf dist && webpack-dev-server --host 0.0.0.0 --watch-poll --inline --hot",
+    "nserver": "NODE_ENV=production node ./src/server/server.js",
     "server": "forever start ./src/server/server.js",
+    "stop": "forever stopall",
+    "install": "yarn install",
     "build": "webpack --config ./webpack.production.config.js --progress --profile --colors",
     "lint": "eslint --ext .jsx src/client; exit 0"
   },
@@ -45,6 +48,7 @@
     "url-loader": "^0.5.7",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.16.2",
-    "webpack-hot-middleware": "^2.2.0"
+    "webpack-hot-middleware": "^2.2.0",
+    "yarn": "^0.20.3"
   }
 }
