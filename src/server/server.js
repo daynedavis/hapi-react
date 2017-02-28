@@ -19,9 +19,11 @@ const server = new Hapi.Server({
 server.register(Inert, () => {});
 
 if (process.env.NODE_ENV === 'production') {
-  server.connection({ port: 80 });
+  console.log('Production mode');
+  server.connection({ port: 8080 });
   server.route(routes);
 } else {
+    console.log('Develop mode');
   server.connection({ port: 3000 });
 }
 

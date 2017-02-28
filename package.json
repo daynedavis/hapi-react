@@ -9,7 +9,6 @@
     "nserver": "NODE_ENV=production node ./src/server/server.js",
     "server": "forever start ./src/server/server.js",
     "stop": "forever stopall",
-    "install": "yarn install",
     "build": "webpack --config ./webpack.production.config.js --progress --profile --colors",
     "lint": "eslint --ext .jsx src/client; exit 0"
   },

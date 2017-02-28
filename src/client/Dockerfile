@@ -1,4 +1,4 @@
-From node:boron
+FROM node:boron
 
 WORKDIR /tmp
 COPY package.json /tmp/
