@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: hapi-react
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: hapi-react
+    spec:
+      containers:
+      - name: hapi-react
+        image: <container image>
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
