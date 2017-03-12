@@ -19,7 +19,7 @@ export default class Home extends React.Component {
     return (
       <div className="container">
         <div className="card">
-          <Title title="Hello Title" />
+          <Title title="Hello World!" />
         </div>
       </div>
     );

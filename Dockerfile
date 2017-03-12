@@ -1,9 +1,8 @@
-FROM node:boron
+FROM node:7.7
 
 WORKDIR /tmp
 COPY package.json /tmp/
-RUN npm config set registry http://registry.npmjs.org/
-RUN npm install -g yarn
+COPY yarn.lock /tmp/
 RUN yarn install
 WORKDIR /usr/src/app
 COPY . /usr/src/app/
