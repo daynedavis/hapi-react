@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: hapi-react
-        image: <container image>
+        image: daynedavis/hapi-react
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
