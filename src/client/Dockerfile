@@ -2,8 +2,7 @@ FROM node:7.7
 
 WORKDIR /tmp
 COPY package.json /tmp/
-COPY yarn.lock /tmp/
-RUN yarn install
+RUN npm install
 WORKDIR /usr/src/app
 COPY . /usr/src/app/
 RUN cp -a /tmp/node_modules /usr/src/app/

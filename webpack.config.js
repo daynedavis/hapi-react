@@ -38,28 +38,29 @@ module.exports = {
     }
   },
   module: {
-    loaders: [{
-      test: /\.jsx?$/,
-      exclude: /node_modules/,
-      loader: 'babel',
-      query: {
-        "presets": ["react", "es2015", "stage-2", "react-hmre"]
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              "presets": ["react", "es2015", "stage-2", "react-hmre"]
+            }
+          }
+        ]
+      }, {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]'
+          }
+        ]
       }
-    }, {
-      test: /\.json?$/,
-      loader: 'json'
-    }, {
-      test: /\.css$/,
-      loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]'
-    }, {
-      test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      loader:"url?limit=10000&mimetype=application/font-woff"
-    }, {
-      test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      loader: "file"
-    }]
+    ]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['.js', '.jsx'],
   }
 };
