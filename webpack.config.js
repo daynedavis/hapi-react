@@ -32,7 +32,7 @@ module.exports = {
     },
     proxy: {
         '/api': {
-            target: 'http://web:3000',
+            target: 'http://hapi:3000',
             secure: false
         }
     }
@@ -54,7 +54,11 @@ module.exports = {
         test: /\.css$/,
         use: [
           {
-            loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]'
+            loader: 'css-loader',
+            query: {
+              modules: true,
+              localIdentName: '[name]__[local]___[hash:base64:5]'
+            }
           }
         ]
       }

@@ -10,6 +10,6 @@
   ],
   "extends": ["eslint:recommended", "plugin:react/all"],
   "rules": {
-    "no-undef": "off",
+    "no-undef": "off"
   }
 }
