@@ -1,6 +1,7 @@
 import React from 'react';
 import Title from './Title';
 import styles from '../style/app.css';
+import userFetcher from '../data/userFetcher';
 
 export default class Home extends React.Component {
   constructor (props) {
@@ -15,75 +16,47 @@ export default class Home extends React.Component {
   }
 
   componentDidMount () {
-    const request = new Request('/api/users', {
-      headers: new Headers({
-        'Content-Type': 'application/json'
-      })
-    });
+    this.fetchUsers();
+  }
 
-    const text = fetch(request).then((res) => {
-      return res.json();
-    });
+  async fetchUsers () {
+    const users = await userFetcher.getUsers();
+    this.setState({ users });
+  }
 
-    text.then((users) => {
-      this.setState({ users });
-    });
+  async addUser () {
+    const users = await userFetcher.addUser(this.newName.value);
+    this.setState({ users });
+    this.newName.value = '';
+  }
+
+  async removeUser (id) {
+    const users = await userFetcher.removeUser(id);
+    this.setState({ users });
   }
 
   getUsers () {
     const { users } = this.state;
     return users.map((user, idx) => {
       return (
-        <li className={styles.user} key={`User${idx}`}>
+        <div className={styles.user} key={`User${idx}`}>
           {user.name}
           <div className={styles.remove} onClick={() => this.removeUser(user._id)}>x</div>
-        </li>
+        </div>
       );
     })
   }
 
-  addUser () {
-    const request = new Request('/api/users', {
-      method: 'POST',
-      headers: new Headers({
-        'Content-Type': 'application/json'
-      }),
-      body: JSON.stringify({name: this.newName.value})
-    });
-
-    const text = fetch(request).then((res) => {
-      res.json().then(users => {
-        this.setState({ users });
-      });
-    });
-  }
-
-  removeUser (id) {
-    const request = new Request('/api/users', {
-      headers: new Headers({
-        'Content-Type': 'application/json'
-      }),
-      method: 'DELETE',
-      body: JSON.stringify({ id })
-    });
-
-    const text = fetch(request).then((res) => {
-      res.json().then(users => {
-        this.setState({ users });
-      });
-    });
-  }
-
   render () {
     return (
-      <div className="container">
-        <div className="card">
+      <div className={styles.container}>
+        <div className={styles.card}>
           <Title title="Users" />
           <input type="text" ref={(ref) => this.newName = ref} />
-          <button onClick={this.addUser}>Add user</button>
-          <ul>
+          <button className={styles.add} onClick={this.addUser}>Add user</button>
+          <div className={styles.userlist}>
             {this.getUsers()}
-          </ul>
+          </div>
         </div>
       </div>
     );

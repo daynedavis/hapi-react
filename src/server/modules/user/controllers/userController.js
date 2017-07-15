@@ -13,12 +13,6 @@ class userController {
         const { name } = request.payload;
         const newUser = new User({ name });
 
-        newUser.dudify((err, name) => {
-            if (err) throw err;
-
-            console.log('Your new name is ' + name);
-        });
-
         newUser.save((err) => {
             if (err) throw err;
 

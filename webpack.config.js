@@ -9,6 +9,7 @@ module.exports = {
   entry: [
     'react-hot-loader/patch',
     'webpack-dev-server/client?http://0.0.0.0:8080',
+    'babel-polyfill',
     path.join(__dirname, 'src/client/app.jsx')
   ],
   output: {
@@ -46,7 +47,7 @@ module.exports = {
           {
             loader: 'babel-loader',
             options: {
-              "presets": ["react", "es2015", "stage-2", "react-hmre"]
+              "presets": ["react", "latest", "stage-2", "react-hmre"]
             }
           }
         ]

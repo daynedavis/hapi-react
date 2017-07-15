@@ -5,8 +5,7 @@ COPY package.json /usr/src/app/
 RUN npm install
 COPY . /usr/src/app/
 
-ENV NODE_ENV=dev
-EXPOSE 3000 
+ENV NODE_ENV=production
+EXPOSE 8080
 
-CMD [ "npm", "run", "server" ]
-
+CMD [ "npm", "run", "build", "&&" "npm", "run", "nserver" ]
