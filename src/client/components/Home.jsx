@@ -34,9 +34,9 @@ export default class Home extends React.Component {
     const { users } = this.state;
     return users.map((user, idx) => {
       return (
-        <li className={styles.locals.user} key={`User${idx}`}>
+        <li className={styles.user} key={`User${idx}`}>
           {user.name}
-          <div className={styles.locals.remove} onClick={() => this.removeUser(user._id)}>x</div>
+          <div className={styles.remove} onClick={() => this.removeUser(user._id)}>x</div>
         </li>
       );
     })

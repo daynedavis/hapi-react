@@ -6,7 +6,11 @@ services:
       - "27017:27017"
     restart: always
     volumes:
-      - "/Users/daynedavis/db:/db"
+      - "/tmp/hrdb:/data/db"
+  mongoclient:
+    image: mongoclient/mongoclient
+    ports:
+      - "3001:3000"
   web:
     build:
       context: .

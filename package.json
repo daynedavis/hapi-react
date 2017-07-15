@@ -2,17 +2,16 @@
   "name": "hapi-react",
   "version": "0.0.1",
   "description": "React application with hapi server",
-  "main": "server.js",
+  "main": "./src/server/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config ./webpack.production.config.js --progress --profile --colors",
     "dc": "docker-compose build && docker-compose up",
-    "mongo": "docker run -d -p 3000:3000 -v /User/daynedavis/db:/data/db mongoclient/mongoclient",
-    "start": "rimraf dist && webpack-dev-server --host 0.0.0.0 --watch-poll --inline --hot",
+    "lint": "eslint --ext .jsx src/client; exit 0",
+    "mongo": "docker run -d -p 3001:3000 mongoclient/mongoclient",
     "nserver": "NODE_ENV=production node ./src/server/server.js",
     "server": "nodemon ./src/server/server.js",
-    "stop": "forever stopall",
-    "build": "webpack --config ./webpack.production.config.js --progress --profile --colors",
-    "lint": "eslint --ext .jsx src/client; exit 0"
+    "start": "rimraf dist && webpack-dev-server --host 0.0.0.0 --watch-poll --inline --hot",
+    "stopall": "docker kill $(docker ps -q)"
   },
   "author": "Dayne Davis",
   "license": "MIT",

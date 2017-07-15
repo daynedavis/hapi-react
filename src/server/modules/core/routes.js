@@ -5,7 +5,7 @@ module.exports = [
     method: 'GET',
     path: '/assets/{filename}',
     handler: {
-      file: function (request) {
+      file: (request) => {
         return request.params.filename;
       }
     }
@@ -13,7 +13,7 @@ module.exports = [
   {
     method: 'GET',
     path: '/{path*}',
-    handler: function (request, reply) {
+    handler: (request, reply) => {
       reply.file('index.html');
     }
   }
