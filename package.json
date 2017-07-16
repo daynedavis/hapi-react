@@ -5,12 +5,12 @@
   "main": "./src/server/server.js",
   "scripts": {
     "build": "webpack --config ./webpack.production.config.js --progress --profile --colors",
-    "dc": "docker-compose build && docker-compose up",
+    "devserver": "rimraf dist && webpack-dev-server --host 0.0.0.0 --watch-poll --inline --hot",
     "lint": "eslint --ext .jsx src/client; exit 0",
     "mongo": "docker run -d -p 3001:3000 mongoclient/mongoclient",
-    "nserver": "NODE_ENV=production node ./src/server/server.js",
+    "prodserver": "NODE_ENV=production node ./src/server/server.js",
     "server": "nodemon ./src/server/server.js",
-    "start": "rimraf dist && webpack-dev-server --host 0.0.0.0 --watch-poll --inline --hot",
+    "start": "docker-compose build && docker-compose up",
     "stopall": "docker kill $(docker ps -q)"
   },
   "author": "Dayne Davis",

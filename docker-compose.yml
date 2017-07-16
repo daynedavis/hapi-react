@@ -24,7 +24,7 @@ services:
       - "/usr/src/app/node_modules"
     environment:
       - NODE_ENV=dev
-    command: npm start
+    command: npm run devserver
   hapi:
     build:
       context: .
