@@ -9,4 +9,4 @@ COPY . /usr/src/app/
 ENV NODE_ENV=production
 EXPOSE 8080
 
-CMD [ "npm", "run", "build", "&&" "npm", "run", "prodserver" ]
+CMD [ "npm", "run", "bnrprod"]
