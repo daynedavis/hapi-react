@@ -21,6 +21,7 @@ services:
       - "8080:8080"
     volumes:
       - "./:/usr/src/app:rw"
+      - "/usr/src/app/node_modules"
     environment:
       - NODE_ENV=dev
     command: npm start
@@ -34,6 +35,7 @@ services:
       - "3000:3000"
     volumes:
       - "./:/usr/src/app:rw"
+      - "/usr/src/app/node_modules"
     environment:
       - NODE_ENV=dev
     command: npm run server
